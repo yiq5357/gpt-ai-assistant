@@ -39,13 +39,14 @@ client.interceptors.response.use(handleFulfilled, (err) => {
 });
 
 const createChatCompletion = ({
+  key = config.OPENAI_API_KEY,
   model = config.OPENAI_COMPLETION_MODEL,
   messages,
   temperature = config.OPENAI_COMPLETION_TEMPERATURE,
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
-}) => client.post('', {
+}) => client.post(`?key=${key}`, {
   model,
   messages,
   temperature,
@@ -55,6 +56,7 @@ const createChatCompletion = ({
 });
 
 const createTextCompletion = ({
+  key = config.OPENAI_API_KEY,
   model = config.OPENAI_COMPLETION_MODEL,
   prompt,
   temperature = config.OPENAI_COMPLETION_TEMPERATURE,
@@ -62,7 +64,7 @@ const createTextCompletion = ({
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
   stop = config.OPENAI_COMPLETION_STOP_SEQUENCES,
-}) => client.post('', {
+}) => client.post(`?key=${key}`, {
   model,
   prompt,
   temperature,
